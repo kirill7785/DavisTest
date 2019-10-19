@@ -1,0 +1,127 @@
+object HBlockRedoForm: THBlockRedoForm
+  Left = 527
+  Top = 409
+  AutoSize = True
+  Caption = #1088#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' hollow bloca'
+  ClientHeight = 201
+  ClientWidth = 337
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox2: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 337
+    Height = 201
+    Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1077' hollow '#1073#1083#1086#1082#1072
+    Color = clMoneyGreen
+    ParentColor = False
+    TabOrder = 0
+    object BApply: TButton
+      Left = 208
+      Top = 136
+      Width = 75
+      Height = 25
+      Caption = #1055#1088#1080#1084#1077#1085#1080#1090#1100
+      TabOrder = 0
+      OnClick = BApplyClick
+    end
+    object GroupBox1: TGroupBox
+      Left = 16
+      Top = 24
+      Width = 169
+      Height = 161
+      Caption = #1088#1072#1079#1084#1077#1088#1099' '#1080' '#1087#1086#1083#1086#1078#1077#1085#1080#1077'  '#1073#1083#1086#1082#1072
+      Color = clSkyBlue
+      ParentColor = False
+      TabOrder = 1
+      object Lxs: TLabel
+        Left = 24
+        Top = 40
+        Width = 12
+        Height = 13
+        Caption = 'xS'
+      end
+      object LyS: TLabel
+        Left = 24
+        Top = 72
+        Width = 12
+        Height = 13
+        Caption = 'yS'
+      end
+      object LxL: TLabel
+        Left = 24
+        Top = 104
+        Width = 11
+        Height = 13
+        Caption = 'xL'
+      end
+      object LyL: TLabel
+        Left = 24
+        Top = 136
+        Width = 11
+        Height = 13
+        Caption = 'yL'
+      end
+      object Edit1: TEdit
+        Left = 56
+        Top = 32
+        Width = 73
+        Height = 21
+        TabOrder = 0
+      end
+      object Edit3: TEdit
+        Left = 56
+        Top = 96
+        Width = 73
+        Height = 21
+        TabOrder = 1
+      end
+      object Edit4: TEdit
+        Left = 56
+        Top = 128
+        Width = 73
+        Height = 21
+        TabOrder = 2
+      end
+      object Edit2: TEdit
+        Left = 56
+        Top = 64
+        Width = 73
+        Height = 21
+        TabOrder = 3
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 192
+      Top = 24
+      Width = 137
+      Height = 81
+      Caption = #1087#1086#1075#1088#1072#1085#1080#1095#1085#1099#1081' '#1089#1083#1086#1081
+      Color = clSkyBlue
+      ParentColor = False
+      TabOrder = 2
+      object Label1: TLabel
+        Left = 16
+        Top = 24
+        Width = 100
+        Height = 13
+        Caption = #1074#1086#1082#1088#1091#1075' hollow '#1073#1083#1086#1082#1072
+      end
+      object CheckBox1: TCheckBox
+        Left = 16
+        Top = 48
+        Width = 97
+        Height = 17
+        Caption = #1087#1088#1080#1089#1091#1090#1089#1090#1074#1091#1077#1090
+        TabOrder = 0
+      end
+    end
+  end
+end
