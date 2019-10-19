@@ -1,0 +1,55 @@
+unit PatchUnit;
+// дополнительная инициализация, например, для
+// VOF метода.
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TPatchForm = class(TForm)
+    Panel1: TPanel;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Llen: TLabel;
+    Lhight: TLabel;
+    Panel2: TPanel;
+    Label3: TLabel;
+    BrectangleCreate: TButton;
+    Panel3: TPanel;
+    Label4: TLabel;
+    BcircleCreate: TButton;
+    Label5: TLabel;
+    procedure BrectangleCreateClick(Sender: TObject);
+    procedure BcircleCreateClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PatchForm: TPatchForm;
+
+implementation
+uses
+      RectangleDomenUnit, CircleDomenUnit; 
+
+{$R *.dfm}
+
+// прямоугольная инициализация
+procedure TPatchForm.BrectangleCreateClick(Sender: TObject);
+begin
+   RectangleDomenForm.ShowModal;
+end;
+
+// круглая инициализация
+procedure TPatchForm.BcircleCreateClick(Sender: TObject);
+begin
+   CircleDomenForm.ShowModal;
+end;
+
+end.

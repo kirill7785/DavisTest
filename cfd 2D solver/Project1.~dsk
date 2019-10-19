@@ -1,0 +1,318 @@
+[Closed Files]
+File_0=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\BonConRedoUnit.pas',0,1,1,1,1,0,0
+File_1=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi14июля2010tested_CURRENTtestedDM\MainUnit.pas',0,1,5939,84,5954,0,0
+File_2=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi12июля2010tested_CURRENTtestedDM\MainUnit.pas',0,1,5898,17,5929,0,0
+File_3=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi8июля2010tested_CURRENTtestedDM\BonConRedoUnit.pas',0,1,1,1,1,0,0
+File_4=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi10июня2010tested_CURRENTtestedDM\ExportTecplotUnit.pas',0,1,1,1,1,1,0
+File_5=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi4июня2010tested_CURRENT\myGeneralSolver.pas',0,1,1,58,2,0,0
+File_6=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi3июня2010tested_CURRENT\InitializeUnit.pas',0,216,119,340,137,0,0
+File_7=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi3июня2010tested_CURRENT\ModelEquationUnit.pas',0,1,13,45,46,1,0
+File_8=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi31mai2010tested_CURRENT\InitializeUnit.pas',0,1,127,36,141,0,0
+File_9=SourceModule,'C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi18apr2010tested_CURRENT\GridGenUnit.pas',0,1,1811,42,1839,0,0
+
+[Modules]
+Module0=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\MeshGen.pas
+Module1=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\BoundaryConditionUnit.pas
+Module2=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\GridGenUnit.pas
+Module3=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\MainUnit.pas
+Module4=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\DisplayUnit.pas
+Module5=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\ExportTecplotUnit.pas
+Module6=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\Project1.dpr
+Count=7
+EditWindowCount=1
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\MeshGen.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\BoundaryConditionUnit.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=1
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\GridGenUnit.pas]
+ModuleType=SourceModule
+FormState=1
+FormOnTop=0
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\MainUnit.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\DisplayUnit.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\ExportTecplotUnit.pas]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\Project1.dpr]
+ModuleType=SourceModule
+FormState=0
+FormOnTop=0
+
+[C:\Program Files (x86)\Borland\Delphi6\Projects\ProjectGroup1.bpg]
+FormState=0
+FormOnTop=0
+
+[EditWindow0]
+ViewCount=7
+CurrentView=4
+View0=0
+View1=1
+View2=2
+View3=3
+View4=4
+View5=5
+View6=6
+CodeExplorer=CodeExplorer@EditWindow0
+MessageView=MessageView@EditWindow0
+Create=1
+Visible=1
+State=0
+Left=243
+Top=58
+Width=1345
+Height=898
+MaxLeft=-4
+MaxTop=108
+ClientWidth=1337
+ClientHeight=864
+LeftPanelSize=300
+LeftPanelClients=CodeExplorer@EditWindow0
+LeftPanelData=000004000000000000000000000000000000000000000000000100000000000000000C000000436F64654578706C6F726572FFFFFFFF
+RightPanelSize=0
+BottomPanelSize=0
+BottomPanelClients=MessageView@EditWindow0
+BottomPanelData=00000400010000000B0000004D65737361676556696577390500000000000002A2000000000000000100000000000000000000000001000000006E0400000000000001000000006E0400000000000001000000006E0400000000000001000000006E04000000000000010000000014050000000000000100000000140500000000000001000000007E050000000000000100000000390500000000000001000000003905000000000000FFFFFFFF
+
+[View0]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\Project1.dpr
+CursorX=1
+CursorY=1
+TopLine=76
+LeftCol=1
+
+[View1]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\MainUnit.pas
+CursorX=46
+CursorY=16496
+TopLine=37
+LeftCol=1
+
+[View2]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\ExportTecplotUnit.pas
+CursorX=1
+CursorY=1
+TopLine=31
+LeftCol=1
+
+[View3]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\BoundaryConditionUnit.pas
+CursorX=22
+CursorY=169
+TopLine=90
+LeftCol=1
+
+[View4]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\MeshGen.pas
+CursorX=15
+CursorY=12
+TopLine=13
+LeftCol=1
+
+[View5]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\DisplayUnit.pas
+CursorX=43
+CursorY=154
+TopLine=163
+LeftCol=1
+
+[View6]
+Module=C:\Documents and Settings\Administrator\Desktop\DavisTestDelphi19июля2010tested_CURRENTtestedDM\GridGenUnit.pas
+CursorX=23
+CursorY=310
+TopLine=370
+LeftCol=1
+
+[Watches]
+Count=1
+Watch0='unit',256,0,18,1,0
+
+[Breakpoints]
+Count=0
+
+[AddressBreakpoints]
+Count=0
+
+[Main Window]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=31
+Width=1680
+Height=112
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1672
+ClientHeight=78
+
+[ProjectManager]
+Create=1
+Visible=0
+State=0
+Left=369
+Top=372
+Width=438
+Height=305
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=430
+ClientHeight=279
+TBDockHeight=305
+LRDockWidth=438
+Dockable=1
+
+[CPUWindow]
+Create=1
+Visible=0
+State=0
+Left=573
+Top=348
+Width=533
+Height=353
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=525
+ClientHeight=319
+DumpPane=79
+DisassemblyPane=187
+RegisterPane=231
+FlagPane=64
+
+[AlignmentPalette]
+Create=1
+Visible=0
+State=0
+Left=200
+Top=114
+Width=156
+Height=84
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=150
+ClientHeight=60
+
+[PropertyInspector]
+Create=1
+Visible=1
+State=0
+Left=91
+Top=12
+Width=205
+Height=693
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=205
+ClientHeight=693
+TBDockHeight=693
+LRDockWidth=190
+Dockable=1
+SplitPos=103
+ArrangeBy=Name
+SelectedItem=Caption
+ExpandedItems=
+HiddenCategories=
+
+[WatchWindow]
+Create=1
+Visible=0
+State=0
+Left=629
+Top=450
+Width=421
+Height=149
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=413
+ClientHeight=123
+TBDockHeight=149
+LRDockWidth=421
+Dockable=1
+
+[ObjectTree]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=12
+Width=87
+Height=693
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=87
+ClientHeight=693
+TBDockHeight=693
+LRDockWidth=190
+Dockable=1
+
+[CodeExplorer@EditWindow0]
+Create=1
+Visible=1
+State=0
+Left=0
+Top=12
+Width=300
+Height=852
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=300
+ClientHeight=852
+TBDockHeight=305
+LRDockWidth=300
+Dockable=1
+
+[MessageView@EditWindow0]
+Create=1
+Visible=0
+State=0
+Left=12
+Top=0
+Width=1325
+Height=162
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=1325
+ClientHeight=162
+TBDockHeight=162
+LRDockWidth=443
+Dockable=1
+
+[DockHosts]
+DockHostCount=1
+
+[DockSite0]
+DockSiteType=0
+Create=1
+Visible=1
+State=0
+Left=3
+Top=116
+Width=304
+Height=731
+MaxLeft=-1
+MaxTop=-1
+ClientWidth=296
+ClientHeight=705
+TBDockHeight=731
+LRDockWidth=333
+Dockable=1
+DockClients=ObjectTree,PropertyInspector
+DockSiteData=0000040000000000280100000000000002C10200000000000001000000005B0000000E0000004F626A65637454726565566965770100000000280100001100000050726F7065727479496E73706563746F72FFFFFFFF
+

@@ -1,0 +1,48 @@
+unit ModelEquationUnit;
+// здесь можно выбрать систему уравнений дл€ решени€.
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TModelEquationForm = class(TForm)
+    Panel1: TPanel;
+    RadioGroup1: TRadioGroup;
+    Bapply: TButton;
+    procedure BapplyClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    oldeq : Integer; // предыдущий набор уравнений до выбора
+  end;
+
+var
+  ModelEquationForm: TModelEquationForm;
+
+implementation
+uses
+      MainUnit; // использует главный модуль
+
+{$R *.dfm}
+
+// выбор  решаемого уравнени€ или системы таких уравнений
+procedure TModelEquationForm.BapplyClick(Sender: TObject);
+begin
+   Form1.imodelEquation:=RadioGroup1.ItemIndex+1;
+   if ((oldeq=0) or (oldeq=1)) and ((RadioGroup1.ItemIndex=2) or (RadioGroup1.ItemIndex=3)) then
+   begin
+      // от теплопроводности перешли к Ќавье-—токсу
+      Form1.imarker:=0; // сброс показа нев€зки
+   end;
+   if ((oldeq=2) or (oldeq=3)) and ((RadioGroup1.ItemIndex=0) or (RadioGroup1.ItemIndex=1)) then
+   begin
+      // от Ќавье-—токса к теплопроводности
+      Form1.imarker:=0; // сброс показа нев€зки
+   end;
+end; // выбор системы решаемых уравнений
+
+end.

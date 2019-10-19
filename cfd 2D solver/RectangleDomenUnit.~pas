@@ -1,0 +1,86 @@
+unit RectangleDomenUnit;
+// дополнительная инициализация, например, для VOF метода.
+// только прямоугольные домены.
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TRectangleDomenForm = class(TForm)
+    Panel1: TPanel;
+    PositionGroupBox: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    ExS: TEdit;
+    EyS: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    ExL: TEdit;
+    EyL: TEdit;
+    Panel2: TPanel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Evalue: TEdit;
+    Bpatch: TButton;
+    ComboBox1: TComboBox;
+    Bclose: TButton;
+    procedure BpatchClick(Sender: TObject);
+    procedure BcloseClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RectangleDomenForm: TRectangleDomenForm;
+
+implementation
+uses
+        MainUnit; // использует главный модуль
+{$R *.dfm}
+
+// инициализирует прямоугольную подобласть заданным значением функции для
+// 1 - VOF метода.
+procedure TRectangleDomenForm.BpatchClick(Sender: TObject);
+var
+    xS, yS, xL, yL : Real; // координаты прямоугольника
+    rvalue : Real; // значение функции
+    k : Integer;
+    
+begin
+   xS:=StrToFloat(ExS.Text);
+   yS:=StrToFloat(EyS.Text);
+   xL:=StrToFloat(ExL.Text);
+   yL:=StrToFloat(EyL.Text);
+   rvalue:=StrToFloat(Evalue.Text);
+   for k:=1 to Form1.imaxnumbernode do
+   begin
+      with Form1.mapPT[k] do
+      begin
+         if (itype<>0) then
+         begin
+            // только для узлов принадлежащих расчётной области
+
+            if ((Form1.xpos[i]<=(xS+xL)) and (Form1.xpos[i]>=xS) and (Form1.ypos[j]>=yS) and (Form1.ypos[j]<=(yS+yL))) then
+            begin
+               // изначально функция тока всюду
+               // равна нулю, включая границы
+               Form1.VOF[i+(j-1)*Form1.inx]:=rvalue;
+            end;
+         end;
+     end;
+   end;
+
+end;
+
+// закрывает форму
+procedure TRectangleDomenForm.BcloseClick(Sender: TObject);
+begin
+   Close;
+end;
+
+end.

@@ -1,0 +1,78 @@
+unit RelaxFactorsUnit;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TRelaxFactorsForm = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel; // параметр релаксации к давлению (пи добавлении поправки)
+    Bapply: TButton;
+    GroupBox3: TGroupBox;
+    GroupBox1: TGroupBox;
+    LxVel: TLabel;
+    LyVel: TLabel;
+    ExVel: TEdit;
+    EyVel: TEdit;
+    GroupBoxPressure: TGroupBox;
+    LPressure: TLabel;
+    EPressure: TEdit;
+    GroupBox2: TGroupBox;
+    GroupBox4: TGroupBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    ESORVx: TEdit;
+    ESORVy: TEdit;
+    ESORPamendment: TEdit;
+    GroupBox5: TGroupBox;
+    ESORTempretrure: TEdit;
+    GroupBoxBussinesk: TGroupBox;
+    EBodyForce: TEdit;
+    procedure BapplyClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RelaxFactorsForm: TRelaxFactorsForm;
+
+implementation
+uses
+    MainUnit; // использует главный модуль
+{$R *.dfm}
+
+// задаёт параметры релаксации
+procedure TRelaxFactorsForm.BapplyClick(Sender: TObject);
+begin
+   // задание параметров релаксации
+   // для алгоритма SIMPLE
+   Form1.myrelaxfactors.xVelRelax:=StrToFloat(ExVel.Text); // уравнение для горизонтальной компоненты скорости
+   Form1.myrelaxfactors.yVelRelax:=StrToFloat(EyVel.Text); // уравнение для вертикальной компоненты скорости
+   if (not(Form1.bsimplec)) then
+   begin
+      // только в том случае если используется алгоритм SIMPLE
+      Form1.myrelaxfactors.PressureRelax:=StrToFloat(EPressure.Text); // для давления
+   end;
+   // для решения уравнения для поправки давления методом SOR:
+   // последовательной верхней релаксации:
+   Form1.myrelaxfactors.pSORPressure:=StrToFloat(ESORPamendment.Text); // SOR для поправки давления.
+   Form1.myrelaxfactors.pSORVelocityVx:=StrToFloat(ESORVx.Text); // SOR для горизонтальной скорости
+   Form1.myrelaxfactors.pSORVelocityVy:=StrToFloat(ESORVy.Text); // SOR для вертикальной скорости
+   Form1.myrelaxfactors.pSORTempreture:=StrToFloat(ESORTempretrure.Text); // SOR для температуры
+   if (Form1.bBussinesk) then
+   begin
+      // При численном моделировании естественной конвекции
+      // при больших числах Рэлея во избежании расходимости
+      // желательно замедлить изменение источникового члена от итерации к итерации,
+      // для этого используется нижняя релаксация:
+      Form1.myrelaxfactors.prelaxBodyForce:=StrToFloat(EBodyForce.Text); // нижняя релаксация
+   end;
+end;  // задаёт параметры релаксации
+
+end.
