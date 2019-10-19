@@ -1,0 +1,60 @@
+unit HBlockRedoUnit;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  THBlockRedoForm = class(TForm)
+    GroupBox2: TGroupBox;
+    BApply: TButton;
+    GroupBox1: TGroupBox;
+    Lxs: TLabel;
+    LyS: TLabel;
+    LxL: TLabel;
+    LyL: TLabel;
+    Edit1: TEdit;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    Edit2: TEdit;
+    GroupBox3: TGroupBox;
+    CheckBox1: TCheckBox;
+    Label1: TLabel;
+    procedure BApplyClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  HBlockRedoForm: THBlockRedoForm;
+
+implementation
+uses
+      GridGenUnit;
+
+{$R *.dfm}
+
+procedure THBlockRedoForm.BApplyClick(Sender: TObject);
+var
+   i : Integer;
+begin
+   // редактирование существующего блока
+   // поиск выделенного блока и заполнение его полей
+   for i:=0 to GridGenForm.CheckListBox1.Items.Count-1 do
+   begin
+      if (GridGenForm.CheckListBox1.Checked[i]) then
+      begin
+         GridGenForm.bricklist[i].xS:=StrToFloat(Edit1.Text);
+         GridGenForm.bricklist[i].yS:=StrToFloat(Edit2.Text);
+         GridGenForm.bricklist[i].xL:=StrToFloat(Edit3.Text);
+         GridGenForm.bricklist[i].yL:=StrToFloat(Edit4.Text);
+      end;
+   end;
+   Close;
+end;
+
+end.

@@ -1,0 +1,203 @@
+object MaterialForm: TMaterialForm
+  Left = 410
+  Top = 123
+  Width = 421
+  Height = 534
+  Caption = #1087#1086#1089#1090#1086#1103#1085#1085#1099#1077' '#1087#1072#1088#1072#1084#1077#1090#1088#1099' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Pmaterial: TPanel
+    Left = 24
+    Top = 8
+    Width = 361
+    Height = 473
+    Color = clMoneyGreen
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 16
+      Top = 8
+      Width = 142
+      Height = 13
+      Caption = #1087#1072#1088#1072#1084#1077#1090#1088#1099' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 136
+      Top = 32
+      Width = 45
+      Height = 13
+      Caption = 'material : '
+    end
+    object Panellambda: TPanel
+      Left = 16
+      Top = 64
+      Width = 321
+      Height = 57
+      Color = clSkyBlue
+      TabOrder = 0
+      object Llambda: TLabel
+        Left = 24
+        Top = 24
+        Width = 94
+        Height = 13
+        Caption = #1090#1077#1087#1083#1086#1087#1088#1086#1074#1086#1076#1085#1086#1089#1090#1100
+      end
+      object Elambda: TEdit
+        Left = 168
+        Top = 16
+        Width = 121
+        Height = 21
+        TabOrder = 0
+      end
+    end
+    object Panel2: TPanel
+      Left = 16
+      Top = 352
+      Width = 321
+      Height = 73
+      Color = clSkyBlue
+      TabOrder = 1
+      Visible = False
+      object Label2: TLabel
+        Left = 24
+        Top = 16
+        Width = 154
+        Height = 13
+        Caption = #1082#1086#1101#1092#1092#1080#1094#1080#1077#1085#1090' '#1090#1077#1084#1087#1077#1088#1072#1090#1091#1088#1085#1086#1075#1086
+      end
+      object Label3: TLabel
+        Left = 56
+        Top = 40
+        Width = 62
+        Height = 13
+        Caption = #1088#1072#1089#1096#1080#1088#1077#1085#1080#1103
+      end
+      object EbetaT: TEdit
+        Left = 192
+        Top = 32
+        Width = 105
+        Height = 21
+        TabOrder = 0
+      end
+    end
+    object PanelNusha: TPanel
+      Left = 16
+      Top = 288
+      Width = 321
+      Height = 57
+      Alignment = taLeftJustify
+      Caption = '      '#1076#1080#1085#1072#1084#1080#1095#1077#1089#1082#1072#1103' '#1074#1103#1079#1082#1086#1089#1090#1100
+      Color = clSkyBlue
+      TabOrder = 2
+      object Emu: TEdit
+        Left = 168
+        Top = 20
+        Width = 121
+        Height = 21
+        TabOrder = 0
+      end
+    end
+    object PanelCp: TPanel
+      Left = 16
+      Top = 232
+      Width = 321
+      Height = 49
+      Alignment = taLeftJustify
+      Color = clSkyBlue
+      TabOrder = 3
+      object Lcp: TLabel
+        Left = 32
+        Top = 20
+        Width = 72
+        Height = 13
+        Caption = #1090#1077#1087#1083#1086#1105#1084#1082#1086#1089#1090#1100
+      end
+      object Ecp: TEdit
+        Left = 152
+        Top = 12
+        Width = 121
+        Height = 21
+        TabOrder = 0
+      end
+    end
+    object GroupBoxDensity: TGroupBox
+      Left = 16
+      Top = 128
+      Width = 321
+      Height = 97
+      Caption = #1087#1083#1086#1090#1085#1086#1089#1090#1100
+      Color = clSkyBlue
+      ParentColor = False
+      TabOrder = 4
+      object Label4: TLabel
+        Left = 16
+        Top = 64
+        Width = 97
+        Height = 13
+        Caption = #1095#1080#1089#1083#1086#1074#1086#1077' '#1079#1085#1072#1095#1077#1085#1080#1077
+      end
+      object Label5: TLabel
+        Left = 16
+        Top = 32
+        Width = 67
+        Height = 13
+        Caption = #1090#1080#1087' '#1079#1085#1072#1095#1077#1085#1080#1103
+      end
+      object Erho: TEdit
+        Left = 144
+        Top = 60
+        Width = 121
+        Height = 21
+        TabOrder = 0
+      end
+      object ComboBox1: TComboBox
+        Left = 144
+        Top = 24
+        Width = 121
+        Height = 21
+        ItemHeight = 13
+        ItemIndex = 0
+        TabOrder = 1
+        Text = #1082#1086#1085#1089#1090#1072#1085#1090#1072
+        OnChange = ComboBox1Change
+        Items.Strings = (
+          #1082#1086#1085#1089#1090#1072#1085#1090#1072
+          #1041#1091#1089#1089#1080#1085#1077#1089#1082)
+      end
+    end
+    object Bapplymaterial: TButton
+      Left = 112
+      Top = 440
+      Width = 225
+      Height = 25
+      Caption = #1079#1072#1076#1072#1090#1100' '#1087#1072#1088#1072#1084#1077#1090#1088#1099' '#1084#1072#1090#1077#1088#1080#1072#1083#1086#1074
+      TabOrder = 5
+      OnClick = BapplymaterialClick
+    end
+    object materialComboBox: TComboBox
+      Left = 192
+      Top = 24
+      Width = 145
+      Height = 21
+      ItemHeight = 13
+      ItemIndex = 0
+      TabOrder = 6
+      Text = 'air'
+      Items.Strings = (
+        'air'
+        'water')
+    end
+  end
+end

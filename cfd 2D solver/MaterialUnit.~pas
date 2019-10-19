@@ -1,0 +1,87 @@
+unit MaterialUnit;
+// В данном модуле задаются параметры материалов
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TMaterialForm = class(TForm)
+    Pmaterial: TPanel;
+    Label1: TLabel;
+    Panellambda: TPanel;
+    Llambda: TLabel;     // название динамической вязкости
+    Elambda: TEdit;
+    Panel2: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    EbetaT: TEdit;
+    PanelNusha: TPanel;
+    Emu: TEdit;
+    PanelCp: TPanel;
+    Lcp: TLabel;
+    Ecp: TEdit;
+    GroupBoxDensity: TGroupBox;
+    Label4: TLabel;
+    Label5: TLabel;
+    Erho: TEdit;
+    ComboBox1: TComboBox;
+    Bapplymaterial: TButton;
+    Label6: TLabel;
+    materialComboBox: TComboBox; // кнопка задания или изменения свойств материалов
+    procedure BapplymaterialClick(Sender: TObject);
+    procedure ComboBox1Change(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  MaterialForm: TMaterialForm;
+
+implementation
+uses
+    MainUnit;  // использует главный модуль
+
+{$R *.dfm}
+
+// задаёт или изменяет параметры материалов
+// путём передачи информации в структуру
+// MaterialProperties главной формы MainUnit.
+procedure TMaterialForm.BapplymaterialClick(Sender: TObject);
+begin
+   Form1.matprop[materialComboBox.ItemIndex].dlambda:=StrToFloat(Elambda.Text); // теплопроводность
+   Form1.matprop[materialComboBox.ItemIndex].drho:=StrToFloat(Erho.Text); // плотность
+   Form1.matprop[materialComboBox.ItemIndex].dcp:=StrToFloat(Ecp.Text); // теплоёмкость
+   Form1.matprop[materialComboBox.ItemIndex].dmu:=StrToFloat(Emu.Text); // динамическая вязкость
+   if (ComboBox1.ItemIndex = 1) then
+   begin
+      // приближение Буссинеска
+      Form1.matprop[materialComboBox.ItemIndex].beta:=StrToFloat(EbetaT.Text); // коэффициент линейного температурного расширения
+   end;
+end; // параметры материалов
+
+// изменение типа плотности
+// константа или приближение Буссинеска rho0
+procedure TMaterialForm.ComboBox1Change(Sender: TObject);
+begin
+   // выбор приближения Буссинеска или
+   // отказ от него
+   if ((Form1.imodelEquation = 4) and (ComboBox1.ItemIndex = 1)) then
+   begin
+      // приближение Буссинеска
+      Panel2.Visible:=true;
+      Form1.bBussinesk:=true;
+   end
+   else
+   begin
+      // обычная плотность
+      Panel2.Visible:=false;
+      Form1.bBussinesk:=false;
+   end;
+end;
+
+end.

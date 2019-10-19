@@ -1,0 +1,83 @@
+unit CircleDomenUnit;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TCircleDomenForm = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    ExC: TEdit;
+    EyC: TEdit;
+    Label4: TLabel;
+    Eradius: TEdit;
+    Panel3: TPanel;
+    Label5: TLabel;
+    ComboBox1: TComboBox;
+    Label6: TLabel;
+    Evalue: TEdit;
+    Bpatch: TButton;
+    Bclose: TButton;
+    procedure BcloseClick(Sender: TObject);
+    procedure BpatchClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  CircleDomenForm: TCircleDomenForm;
+
+implementation
+uses
+     MainUnit; // использует главный модуль
+
+{$R *.dfm}
+
+// закрывает форму
+procedure TCircleDomenForm.BcloseClick(Sender: TObject);
+begin
+   Close;
+end;
+
+// инициализирует круглую подобласть заданным значением функции для
+// 1 - VOF метода.
+procedure TCircleDomenForm.BpatchClick(Sender: TObject);
+var
+    xC, yC, rradius : Real; // координаты прямоугольника
+    rvalue : Real; // значение функции
+    k : Integer;
+
+begin
+   xC:=StrToFloat(ExC.Text);
+   yC:=StrToFloat(EyC.Text);
+   rradius:=StrToFloat(Eradius.Text);
+   rvalue:=StrToFloat(Evalue.Text);
+   for k:=1 to Form1.imaxnumbernode do
+   begin
+      with Form1.mapPT[k] do
+      begin
+         if (itype<>0) then
+         begin
+            // только для узлов принадлежащих расчётной области
+
+            if ((Form1.xpos[i]-xC)*(Form1.xpos[i]-xC) + (Form1.ypos[j]-yC)*(Form1.ypos[j]-yC) <= rradius*rradius) then
+            begin
+               // изначально функция тока всюду
+               // равна нулю, включая границы
+               Form1.VOF[i+(j-1)*Form1.inx]:=rvalue;
+            end;
+         end;
+     end;
+   end;
+
+end;
+
+end.

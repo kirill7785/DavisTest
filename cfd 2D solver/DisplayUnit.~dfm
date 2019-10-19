@@ -1,0 +1,24 @@
+object DisplayForm: TDisplayForm
+  Left = 663
+  Top = 186
+  Width = 337
+  Height = 350
+  Caption = 'Display'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnPaint = FormPaint
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PaintBox1: TPaintBox
+    Left = 24
+    Top = 16
+    Width = 273
+    Height = 273
+  end
+end

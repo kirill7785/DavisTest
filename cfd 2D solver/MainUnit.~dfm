@@ -1,0 +1,218 @@
+object Form1: TForm1
+  Left = 432
+  Top = 124
+  Width = 747
+  Height = 466
+  Caption = 'my Way to SIMPLER'
+  Color = clMoneyGreen
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnPaint = FormPaint
+  PixelsPerInch = 96
+  TextHeight = 13
+  object MainPaintBox: TPaintBox
+    Left = 192
+    Top = 8
+    Width = 521
+    Height = 281
+  end
+  object mainMemo: TMemo
+    Left = 192
+    Top = 296
+    Width = 521
+    Height = 105
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object TreeView1: TTreeView
+    Left = 8
+    Top = 8
+    Width = 169
+    Height = 393
+    Color = clInactiveBorder
+    Indent = 19
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 1
+    OnDblClick = TreeView1DblClick
+    Items.Data = {
+      030000001D0000000000000000000000FFFFFFFFFFFFFFFF0000000002000000
+      044D657368240000000000000000000000FFFFFFFFFFFFFFFF00000000000000
+      000B4372656174652047656F6D250000000000000000000000FFFFFFFFFFFFFF
+      FF00000000000000000C44796E616D6963204D65736826000000000000000000
+      0000FFFFFFFFFFFFFFFF00000000040000000D50726F626C656D205365747570
+      200000000000000000000000FFFFFFFFFFFFFFFF00000000000000000747656E
+      6572616C210000000000000000000000FFFFFFFFFFFFFFFF0000000000000000
+      084571756174696F6E220000000000000000000000FFFFFFFFFFFFFFFF000000
+      0000000000094D6174657269616C732B0000000000000000000000FFFFFFFFFF
+      FFFFFF000000000000000012426F756E6461727920436F6E646974696F6E2100
+      00000000000000000000FFFFFFFFFFFFFFFF000000000700000008536F6C7574
+      696F6E260000000000000000000000FFFFFFFFFFFFFFFF00000000000000000D
+      53656C65637420536F6C766572200000000000000000000000FFFFFFFFFFFFFF
+      FF0000000000000000074D6574686F6473210000000000000000000000FFFFFF
+      FFFFFFFFFF000000000000000008436F6E74726F6C7327000000000000000000
+      0000FFFFFFFFFFFFFFFF00000000000000000E436F6E74726F6C2053494D504C
+      45260000000000000000000000FFFFFFFFFFFFFFFF00000000000000000D5265
+      6C617820466163746F7273230000000000000000000000FFFFFFFFFFFFFFFF00
+      000000020000000A496E697469616C697A65230000000000000000000000FFFF
+      FFFFFFFFFFFF00000000000000000A496E697469616C697A651E000000000000
+      0000000000FFFFFFFFFFFFFFFF00000000000000000550617463682800000000
+      00000000000000FFFFFFFFFFFFFFFF00000000000000000F52756E2043616C63
+      756C6174696F6E}
+  end
+  object MainMenu1: TMainMenu
+    object File1: TMenuItem
+      Caption = 'File'
+      object Read1: TMenuItem
+        Caption = 'Read'
+        object Mesh3: TMenuItem
+          Caption = 'Mesh'
+          OnClick = Mesh3Click
+        end
+      end
+      object Write1: TMenuItem
+        Caption = 'Write'
+        object Mesh4: TMenuItem
+          Caption = 'Mesh'
+          OnClick = Mesh4Click
+        end
+      end
+      object Export1: TMenuItem
+        Caption = 'Export'
+        object ecplot1: TMenuItem
+          Caption = 'Tecplot'
+          OnClick = ecplot1Click
+        end
+      end
+      object Close1: TMenuItem
+        Caption = 'Close'
+        OnClick = Close1Click
+      end
+    end
+    object Mesh1: TMenuItem
+      Caption = 'Mesh'
+      object CreateGeom1: TMenuItem
+        Caption = 'CreateGeom'
+        OnClick = CreateGeom1Click
+      end
+      object DynamicMesh1: TMenuItem
+        Caption = 'Dynamic Mesh'
+        OnClick = DynamicMesh1Click
+      end
+    end
+    object Define1: TMenuItem
+      Caption = 'Define'
+      object General1: TMenuItem
+        Caption = 'General'
+        OnClick = General1Click
+      end
+      object Equation1: TMenuItem
+        Caption = 'Equation'
+        OnClick = Equation1Click
+      end
+      object Materials1: TMenuItem
+        Caption = 'Materials'
+        OnClick = Materials1Click
+      end
+      object BoundaryCondition1: TMenuItem
+        Caption = 'Boundary Condition'
+        OnClick = BoundaryCondition1Click
+      end
+      object Source1: TMenuItem
+        Caption = 'Source'
+        OnClick = Source1Click
+      end
+      object Gravity1: TMenuItem
+        Caption = 'Gravity'
+        OnClick = Gravity1Click
+      end
+    end
+    object Solve1: TMenuItem
+      Caption = 'Solve'
+      object SelectSolver1: TMenuItem
+        Caption = 'Select Solver'
+        OnClick = SelectSolver1Click
+      end
+      object ApproxConvection1: TMenuItem
+        Caption = 'Methods'
+        OnClick = ApproxConvection1Click
+      end
+      object Controls1: TMenuItem
+        Caption = 'Controls'
+        object Solution1: TMenuItem
+          Caption = 'Solution'
+          OnClick = Solution1Click
+        end
+        object SoprGrad1: TMenuItem
+          Caption = 'SoprGrad'
+          OnClick = SoprGrad1Click
+        end
+        object SIMPLE1: TMenuItem
+          Caption = 'SIMPLE'
+          OnClick = SIMPLE1Click
+        end
+        object Pressure1: TMenuItem
+          Caption = 'Pressure'
+          OnClick = Pressure1Click
+        end
+      end
+      object RelaxationFactors1: TMenuItem
+        Caption = 'Relaxation Factors'
+        OnClick = RelaxationFactors1Click
+      end
+      object Initialize1: TMenuItem
+        Caption = 'Initialize'
+        object initialize2: TMenuItem
+          Caption = 'Initialize'
+          OnClick = initialize2Click
+        end
+        object Patch1: TMenuItem
+          Caption = 'Patch'
+          OnClick = Patch1Click
+        end
+      end
+      object Run1: TMenuItem
+        Caption = 'Run'
+        OnClick = Run1Click
+      end
+    end
+    object Display1: TMenuItem
+      Caption = 'Display'
+      object Mesh2: TMenuItem
+        Caption = 'Mesh'
+        OnClick = Mesh2Click
+      end
+      object N2Dplot1: TMenuItem
+        Caption = '2Dplot'
+        OnClick = N2Dplot1Click
+      end
+      object UseInterpolate1: TMenuItem
+        Caption = 'UseInterpolate'
+        OnClick = UseInterpolate1Click
+      end
+    end
+    object Animate1: TMenuItem
+      Caption = 'Animate'
+      object empreture2: TMenuItem
+        Caption = 'Tempreture'
+        OnClick = empreture2Click
+      end
+    end
+    object Library1: TMenuItem
+      Caption = 'Library'
+      object MARENAtest1: TMenuItem
+        Caption = 'MARENA test'
+        OnClick = MARENAtest1Click
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Top = 32
+  end
+end

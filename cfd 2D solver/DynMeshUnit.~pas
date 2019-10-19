@@ -1,0 +1,572 @@
+unit DynMeshUnit;
+// простейшая динамическая сетка
+
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls;
+
+  type
+       Float = Real;
+
+type
+  TDynMeshForm = class(TForm)
+    PaintBox1: TPaintBox;
+    Panel1: TPanel;
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    Ejde: TEdit;
+    Ejds: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Ejupend: TEdit;
+    Ejupstart: TEdit;
+    Binput: TButton;
+    Label5: TLabel;
+    Panel2: TPanel;
+    Label6: TLabel;
+    Label7: TLabel;
+    EAmplityde: TEdit;
+    EFreq: TEdit;
+    BDrawMesh: TButton;
+    Ljupend: TLabel;
+    Ljupst: TLabel;
+    Ljdend: TLabel;
+    Ljdstart: TLabel;
+    GroupBox4: TGroupBox;
+    Label9: TLabel;
+    Label10: TLabel;
+    ECount: TEdit;
+    Label12: TLabel;
+    Label11: TLabel;
+    EcountT: TEdit;
+    BAnimate: TButton;
+    Button1: TButton;
+    GroupBox5: TGroupBox;
+    ComboBox1: TComboBox;
+    Label8: TLabel;
+    Bmemory: TButton;
+    BDraw: TButton;
+    BClose: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure BinputClick(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure BDrawMeshClick(Sender: TObject);
+    procedure BAnimateClick(Sender: TObject);
+    procedure FormPaint(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure BmemoryClick(Sender: TObject);
+    procedure BDrawClick(Sender: TObject);
+    procedure BCloseClick(Sender: TObject);
+  private
+    { Private declarations }
+    // были ли загружены значения
+    // параметров деформируемых слоёв
+    bdouwnload : Boolean;
+    // что прорисовывать
+    iwhotvisibledm : Integer;
+    // глобальное время не должно изменяться при анимации
+    FlowTimeAnimatememory : Float;
+
+  public
+    { Public declarations }
+    // позиция блока
+    rblockpos : Float;
+    // верхний контактирующий блок в методе Бриджмена
+    rblockpositionBridgmen : Float;
+     // очистка фона белым
+    procedure myDMfonclean;
+    // процедура прорисовки геометрии
+    procedure myDMdrawgeom;
+    // процедура прорисовки сетки
+    procedure myDMdrawmesh;
+    // подсветка выбранных границ
+    // уникальные номера подсвечиваемых границ указаны в целочисленном массиве
+    procedure myDMdrawboundary(idesck : Integer);
+  end;
+
+var
+  DynMeshForm: TDynMeshForm;
+
+implementation
+  uses
+       MainUnit, GridGenUnit, Math;
+
+{$R *.dfm}
+
+// очистка фона белым
+procedure TDynMeshForm.myDMfonclean;
+var
+   w,h : Integer; // ширина и высота области в пикселах
+begin
+   // очистка фона белым
+   with PaintBox1 do
+   begin
+      w:=Width; // ширина в пикселах
+      h:=Height;  // высота в пикселах
+      Canvas.Brush.Color:=clWhite;
+      Canvas.Rectangle(0,0,w,h);
+   end; // with  GridGenForm.PaintBox1
+end; // очистка фона белым
+
+// процедура прорисовки геометрии
+procedure TDynMeshForm.myDMdrawgeom;
+const ih = 453;
+var
+    w,h,irh : Integer;
+    ibort : Integer; // бортик для отступа от краёв
+    pxs, pxe, pys, pye : Integer; // края прямоугольника.
+    m : Real; // масштабирующий коэффициент
+    i : Integer; // счётчик
+
+begin
+   // определение высоты и ширины расчётной
+   // области в пикселах
+   with PaintBox1 do
+   begin
+      w:=Width; // ширина в пикселах
+      h:=Height;  // высота в пикселах
+   end;
+
+    ibort:=15; // бортик в 15 пикселей
+    m:=min((h-2*ibort)/Form1.dLy,(w-2*ibort)/Form1.dLx); // масштабирующий коэффициент
+
+    // изменение размеров окна отображения в соответствии с расчётной сеткой
+    Width:= 520 + 2*ibort + round(Form1.dLx*m);
+    irh:= 76 + 2*ibort + round(Form1.dLy*m);
+    Height:=max(ih,irh);
+    // как тока размеры изменены, то генерируется событие изменение размеров PaintBox1
+    with PaintBox1 do
+    begin
+      h:=Height;  // высота в пикселах
+    end;
+
+    myDMfonclean; // очистка фона
+    with GridGenForm do
+    begin
+       pxs:=ibort;
+       pxe:=ibort + round((bricklist[0].xS + bricklist[0].xL)*m);
+       pys:=h - ibort;
+       pye:=h - (ibort + round((bricklist[0].yS + bricklist[0].yL)*m));
+    end;
+    PaintBox1.Canvas.Rectangle(pxs,pys,pxe,pye);
+    for i:=1 to (GridGenForm.maxbrickelem-1) do
+    begin
+        with GridGenForm do
+        begin
+           pxs:=ibort + round(bricklist[i].xS*m);
+           pxe:=ibort + round((bricklist[i].xS+ bricklist[i].xL)*m);
+           pys:=h -(ibort + round(bricklist[i].yS*m));
+           pye:=h -(ibort + round((bricklist[i].yS + bricklist[i].yL)*m));
+        end; // with
+         PaintBox1.Canvas.Rectangle(pxs,pys,pxe,pye);
+    end;
+end; // прорисовка геометрии
+
+// прорисовка геометрии
+procedure TDynMeshForm.Button1Click(Sender: TObject);
+begin
+    iwhotvisibledm:=0; // запоминаем что прорисовывать
+    FormPaint(Sender);
+end;
+
+// считывание вибрационнных параметров
+procedure TDynMeshForm.BinputClick(Sender: TObject);
+begin
+   try
+     with Form1.actiVibr do
+     begin
+         bOn:=false; // ещё надо указать вибрирующий объект
+         bOn2:=false; // вибрирующий объект ещё не определён
+         jdstart:=StrToInt(Ejds.Text);
+         jdend:=StrToInt(Ejde.Text);
+         jupstart:=StrToInt(Ejupstart.Text);
+         jupend:=StrToInt(Ejupend.Text);
+         Amplitude:=StrToFloat(EAmplityde.Text);
+         Frequency:=StrToFloat(EFreq.Text);
+     end; // with
+     bdouwnload:=true;
+   except
+      bdouwnload:=false;
+      Application.MessageBox('Ошибка', 'параметры введены неправильно', MB_OK);
+   end;
+   if (bdouwnload) then
+   begin
+      iwhotvisibledm:=1; // запоминаем что прорисовывать
+      FormPaint(Sender);
+   end;
+end;
+
+
+// изменение размеров формы
+procedure TDynMeshForm.FormResize(Sender: TObject);
+begin
+    // Изменение размеров формы
+   PaintBox1.Width:=Width - 520;
+   PaintBox1.Height:=Height - 76;
+end;
+
+// процедура прорисовки сетки
+procedure TDynMeshForm.myDMdrawmesh;
+const
+     ih = 453; // высота
+var
+    w,h,irh : Integer;
+    ibort : Integer; // бортик для отступа от краёв
+    pxs, pxe, pys, pye : Integer; // края прямоугольника.
+    m : Real; // масштабирующий коэффициент
+    i,j : Integer; // счётчик
+
+begin
+   // определение высоты и ширины расчётной
+   // области в пикселах
+   with PaintBox1 do
+   begin
+      w:=Width; // ширина в пикселах
+      h:=Height;  // высота в пикселах
+   end;
+
+    ibort:=15; // бортик в 15 пикселей
+    m:=min((h-2*ibort)/Form1.dLy,(w-2*ibort)/Form1.dLx); // масштабирующий коэффициент
+
+    // изменение размеров окна отображения в соответствии с расчётной сеткой
+    Width:= 520 + 2*ibort + round(Form1.dLx*m);
+    irh:= 76 + 2*ibort + round(Form1.dLy*m);
+    Height:= max(ih,irh);
+    // как тока размеры изменены, то генерируется событие изменение размеров PaintBox1
+    with PaintBox1 do
+    begin
+      h:=Height;  // высота в пикселах
+    end;
+
+     myDMfonclean; // очистка фона
+    // прорисовка узлов сетки
+
+    PaintBox1.Canvas.Pen.Color:=clGreen;
+    with Form1 do
+     begin
+       for i:=1 to inx do
+       begin
+            // вертикальные линии сетки
+            PaintBox1.Canvas.MoveTo(ibort+round(xpos[i]*m),h-ibort);
+            PaintBox1.Canvas.LineTo(ibort+round(xpos[i]*m),h-(ibort+round(dLy*m)));
+       end;
+       for j:=1 to iny do
+       begin
+           if (bdouwnload and (j <= actiVibr.jdend) and (j >= actiVibr.jdstart)) then
+           begin
+              PaintBox1.Canvas.Pen.Color:=clRed;
+           end
+            else if (bdouwnload and (j <= actiVibr.jupend) and (j >= actiVibr.jupstart)) then
+           begin
+              PaintBox1.Canvas.Pen.Color:=clRed;
+           end
+            else
+           begin
+              PaintBox1.Canvas.Pen.Color:=clGreen;
+           end;
+
+           // горизонтальные линии сетки
+           PaintBox1.Canvas.MoveTo(ibort,h-(ibort+round(ypos[j]*m)));
+           PaintBox1.Canvas.LineTo(ibort+round(dLx*m),h-(ibort+round(ypos[j]*m)));
+       end;
+    end; // with Form1
+
+
+    // учёт расположения hollow block
+    for i:=1 to (GridGenForm.maxbrickelem-1) do
+    begin
+         with GridGenForm do
+         begin
+            pxs:= ibort + round(bricklist[i].xS*m);
+            pxe:= ibort + round((bricklist[i].xS+ bricklist[i].xL)*m);
+            pys:= h - (ibort + round(bricklist[i].yS*m));
+            pye:= h - (ibort + round((bricklist[i].yS + bricklist[i].yL)*m));
+         end; // with
+         PaintBox1.Canvas.Rectangle(pxs,pys,pxe,pye);
+    end;
+
+    PaintBox1.Canvas.Pen.Color:=clBlack; // возвращаем цвет пера на чёрный
+end; // прорисовка сетки
+
+// прорисовывает сетку
+procedure TDynMeshForm.BDrawMeshClick(Sender: TObject);
+begin
+   iwhotvisibledm:=1; // запоминаем что прорисовывать
+   FormPaint(Sender);
+end;
+
+// анимация перестроения сетки
+// запускается только в том случае если все параметры  уже заданы
+procedure TDynMeshForm.BAnimateClick(Sender: TObject);
+var
+    deltat : Float;
+    icount1, icount2 : Integer;
+    i : Integer; // счётчик
+
+begin
+   // Анимация перестроения сетки
+   // Всё это работает если только все значения введены правильно
+   with Form1 do
+   begin
+       if ((bdouwnload) and (actiVibr.bOn)) then
+       begin
+          // запоминаем текущее глобальное время
+          FlowTimeAnimatememory:=realFlowTime;
+          SetLength(yposfix,iny+1); // выделение памяти под текущубю сетку
+          // запоминаем текущую сетку
+          yposfix[0]:=ypos[0];
+          for i:=1 to iny do
+          begin
+             yposfix[i]:=ypos[i];
+          end;
+          // запоминаем стартовую координату подвижного блока.
+          rblockpos:=GridGenForm.bricklist[actiVibr.unickbricknum].yS;
+          if (actiVibr.bBridshmen) then
+          begin
+             rblockpositionBridgmen:=GridGenForm.bricklist[actiVibr.uniccontacktupbricknum].yS;
+          end;
+          icount1:=StrToInt(ECount.Text); // число шагов за период
+          realFlowTime:=0.0;
+          deltat:=1/(actiVibr.Frequency*icount1); // шаг по времени
+          icount2:=StrToInt(EcountT.Text); // продолжительность - число периодов.
+          // Анимация :
+          for i:=0 to (icount1*icount2) do
+          begin
+             iwhotvisibledm:=1;
+             DynMeshForm.FormPaint(Sender); // прорисовка подвижной сетки
+             Sleep(100); // пауза
+             realFlowTime:=realFlowTime+deltat;
+             mymovingmesh;
+          end;
+          // откат назад сохранение исходной сетки
+          // сохранение исходной сетки после анимации.
+          for i:=1 to iny do
+          begin
+             ypos[i]:=yposfix[i];
+          end;
+          // возвращение подвижного блока в исходную позицию.
+          GridGenForm.bricklist[actiVibr.unickbricknum].yS:=rblockpos;
+          if (actiVibr.bBridshmen) then
+          begin
+             GridGenForm.bricklist[actiVibr.uniccontacktupbricknum].yS:=rblockpositionBridgmen;
+             GridGenForm.bricklist[actiVibr.uniccontacktupbricknum].yL:=dLy-rblockpositionBridgmen;
+          end;
+          // возвращение глобального времени в начало.
+          realFlowTime:=FlowTimeAnimatememory;
+          Application.MessageBox('после анимации движения сетки исходная сетка не портиться', 'сообщение о сетке', MB_OK);
+       end
+        else
+       begin
+          Application.MessageBox('Вы должны осуществить ввод всех параметров','ошибка ввода',MB_OK);
+       end;
+   end; // with
+end; // анимация перестройки сетки.
+
+procedure TDynMeshForm.FormPaint(Sender: TObject);
+begin
+   case iwhotvisibledm of
+    0 : // прорисовка геометрии
+      begin
+         myDMfonclean;
+         myDMdrawgeom;
+      end;
+    1 : // прорисовка сетки
+      begin
+         myDMfonclean;
+         myDMdrawmesh;
+      end;
+    end; // case
+    with Form1.actiVibr do
+    begin
+       if (bOn2) then
+       begin
+          myDMdrawboundary(unicalidentifire); // прорисовка подвижной границы
+       end;
+    end;
+end;
+
+procedure TDynMeshForm.FormCreate(Sender: TObject);
+begin
+   iwhotvisibledm:=0; // прорисовка геометрии по умолчанию
+end;
+
+// выбор вибрирующей границы
+procedure TDynMeshForm.BmemoryClick(Sender: TObject);
+const
+    epsilon = 1e-5; // точность определения подвижного блока
+var
+    fxS, fyS, fxE, fyE, fxL, fyL : Float; // параметры по которым можно найти блок
+    k : Integer;
+    iedgeselect : Integer;
+    str : String;
+    pstr  : PChar; // указатель на строку
+begin
+    // инициализация
+     fxS:=0.0; fyS:=0.0; fxE:=0.0; fyE:=0.0;
+    // запоминаем уникальный идентификатор вибрирующей границы
+    with Form1 do
+    begin
+       iedgeselect:=ComboBox1.ItemIndex+1;
+       actiVibr.unicalidentifire:=GridGenForm.edgelist[iedgeselect].idescriptor;
+       actiVibr.bOn2:=true;
+       FormPaint(Sender);
+       for k:=1 to  imaxnumbernode do
+       begin
+           if (mapPT[k].itype = 2) then
+           begin // граничная точка
+              if (mapPT[k].iboundary = actiVibr.unicalidentifire) then
+              begin // с подходящим идентификатором
+                 case mapPT[k].iugol of
+                   1 : begin
+                          // левый нижний угол
+                          fxS:=xpos[mapPT[k].i];
+                          fyS:=ypos[mapPT[k].j];
+                       end;
+                   4 : begin
+                          // верхний правый угол
+                          fxE:=xpos[mapPT[k].i];
+                          fyE:=ypos[mapPT[k].j];
+                       end;
+                  end; // case
+              end;
+           end;
+        end;
+    end; // with
+    // нужно определить автоматом блок
+    // который приводится в движение
+    fxL:=fxE-fxS; fyL:=fyE-fyS; // ширина и высота этого блока
+    with GridGenForm do
+    begin
+       for k:=1 to (maxbrickelem-1) do
+       begin
+          if ((abs(bricklist[k].xS-fxS)<epsilon) and (abs(bricklist[k].yS-fyS)<epsilon) and
+              (abs(bricklist[k].xL-fxL)<epsilon) and (abs(bricklist[k].yL-fyL)<epsilon)) then
+              begin
+                 // запоминаем номер k.
+                 Form1.actiVibr.unickbricknum:=k;
+                 Form1.actiVibr.bOn:=true;
+              end;
+       end;
+    end; // with
+    // в позиции fyE могут находится ещё две yS`тарт  узловые точки
+    Form1.actiVibr.bBridshmen:=false;
+    // Это случай Бриджмена.
+    with GridGenForm do
+    begin
+       for k:=1 to (maxbrickelem-1) do
+       begin
+          if ((abs(bricklist[k].yS-fyE)<epsilon) and
+          (bricklist[k].xS>fxS) and
+          ((bricklist[k].xS+bricklist[k].xL)<fxE)) then
+           begin
+              // запоминаем номер k.
+              Form1.actiVibr.uniccontacktupbricknum:=k;
+              Form1.actiVibr.bBridshmen:=true;
+           end;
+       end;
+    end; // with
+    if (Form1.actiVibr.bOn) then
+    begin
+       // устанавливаем нестационарный решатель
+       Form1.btimedepend:=true;
+       str:='блок '+IntToStr(Form1.actiVibr.unickbricknum);
+       str:=str+' распознан';
+       pstr:=PChar(str);
+       Application.MessageBox(pstr,'операция',MB_OK);
+       if (Form1.actiVibr.bBridshmen) then
+       begin
+          str:='добавочный блок ' + IntToStr(Form1.actiVibr.uniccontacktupbricknum);
+          str:=str + ' в методе Бриджмена распознан';
+          pstr:=PChar(str);
+          Application.MessageBox(pstr,'операция',MB_OK);
+       end;
+    end;
+end;
+
+// подсветка выбранных границ
+// уникальные номера подсвечиваемых границ указаны в целочисленном массиве
+procedure TDynMeshForm.myDMdrawboundary( idesck : Integer);
+const
+      ih = 453; // высота
+var
+    w,h : Integer;
+    ibort : Integer; // бортик для отступа от краёв
+    pxs, pxe, pys, pye : Integer; // края прямоугольника.
+    m : Real; // масштабирующий коэффициент
+    i,j,ihr : Integer; // счётчики
+
+begin
+   // Этот метод отмечает выделенные границы.
+   // его надо вызывать после метода drawgeom.
+
+   // определение высоты и ширины расчётной
+   // области в пикселах
+   with PaintBox1 do
+   begin
+      w:=Width; // ширина в пикселах
+      h:=Height;  // высота в пикселах
+   end;
+
+    ibort:=15; // бортик в 15 пикселей
+    m:=min((h-2*ibort)/Form1.dLy,(w-2*ibort)/Form1.dLx); // масштабирующий коэффициент
+
+    // изменение размеров окна отображения в соответствии с расчётной сеткой
+    Width:= 520 + 2*ibort + round(Form1.dLx*m);
+    ihr:= 76 + 2*ibort + round(Form1.dLy*m);
+    Height:=max(ih,ihr);
+    // как тока размеры изменены, то генерируется событие изменение размеров PaintBox1
+    with DynMeshForm.PaintBox1 do
+    begin
+      h:=Height;  // высота в пикселах
+    end;
+
+    PaintBox1.Canvas.Brush.Color:=clRed;
+     with Form1 do
+     begin
+       for i:=1 to inx do
+       begin
+          for j:=1 to iny do
+          begin
+             if (mapPT[i + (j-1)*inx].itype=2) then
+             begin
+                // это граничная точка с уникальным идентификатором
+                // границы.
+                if (mapPT[i + (j-1)*inx].iboundary = idesck) then
+                begin
+                   // xpos[i], ypos[j] - вещественные координаты граничного узла.
+                   pxs:= ibort + round(m*xpos[i]) - 5;
+                   pxe:= ibort + round(m*xpos[i]) + 5;
+                   pys:= h - (ibort + round(m*ypos[j]) - 5);
+                   pye:= h - (ibort + round(m*ypos[j]) + 5);
+                   PaintBox1.Canvas.Ellipse(pxs,pys,pxe,pye);
+                end;
+             end;
+          end;
+       end;
+     end; // with
+    PaintBox1.Canvas.Brush.Color:=clWhite; // возвращаем цвет кисти на белый
+end;
+
+procedure TDynMeshForm.BDrawClick(Sender: TObject);
+var
+   iselectboundary : Integer; // выделенная граница
+   iunicdisk : Integer; // уникальный дискриптор выделенной границы
+begin
+   iselectboundary:=ComboBox1.ItemIndex+1; // нумерация начинается с 1
+   iunicdisk:=GridGenForm.edgelist[iselectboundary].idescriptor;
+   myDMdrawboundary(iunicdisk);
+end;
+
+// закрывает форму
+procedure TDynMeshForm.BCloseClick(Sender: TObject);
+begin
+    Close;
+end;
+
+end.
