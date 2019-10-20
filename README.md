@@ -21,6 +21,8 @@ Algorithms:
 * original Algebraic Multigrid for solve Ax=b;
 * High Resolution Scheme for approximation convection: QUICK; SMART; SUPERBEE; etc...
 * OpenGL graphics; Animations.
+* Only cartesian rectangular coordinate system
+* Does not have a turbulence model
 
 ![alt text](https://raw.githubusercontent.com/kirill7785/DavisTest/master/picture/cavity%20Re%3D100/cavity%20Re100.bmp)
 ![alt text](https://raw.githubusercontent.com/kirill7785/DavisTest/master/picture/davis%20Ra1E3%20Pr0i7/Ra1E3Pr0i7.bmp)
