@@ -3,9 +3,9 @@
 
 System requarements:
 * OS Windows x64
-* compiller delphi 2018 : Embarcadero® Delphi 10.3 Version 26.0.32429.4364 
+* compiller delphi 2018 : EmbarcaderoÂ® Delphi 10.3 Version 26.0.32429.4364 
 * dll compiller: visual studio 2019 community
-* microsoft redistributable package: vcredist x64
+* microsoft redistributable package: VC_redist.x64
 * evalution tecplot 360 or paraview for visualization.
 
 Algorithms:
