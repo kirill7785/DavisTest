@@ -28,8 +28,3 @@ Algorithms:
 ![alt text](https://raw.githubusercontent.com/kirill7785/DavisTest/master/picture/davis%20Ra1E3%20Pr0i7/Ra1E3Pr0i7.bmp)
 ![alt text](https://raw.githubusercontent.com/kirill7785/DavisTest/master/picture/Raley%20Benar%20Ra1E4%20Pr0i7/Raley%20Benar%20Ra%3D1E4.bmp)
 ![alt text](https://raw.githubusercontent.com/kirill7785/DavisTest/master/picture/cylinder%20Re%3D20/flow%20araund%20square%20cylinder.bmp)
-
-![alt text](https://github.com/kirill7785/DavisTest/blob/master/picture/VOF_1/paper1.png)
-![alt text](https://github.com/kirill7785/DavisTest/blob/master/picture/VOF_1/paper2.png)
-execution time = 1h 11m 2.2GHz processor
-[![Watch the video](https://github.com/kirill7785/DavisTest/blob/master/picture/VOF_1/pic1.png)](https://yadi.sk/i/Jf8S1rTPJqRmJw)
