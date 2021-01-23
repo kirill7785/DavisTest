@@ -19,6 +19,7 @@ Algorithms:
 * original dynamic mesh!!!
 * original Volume of Fluid (VOF) method; Surfase Tension Force (CSF)is support; !!!
 * original Algebraic Multigrid for solve Ax=b;
+* amg AMGCL ddemidov for continity equation. (Future 23.01.2021)
 * High Resolution Scheme for approximation convection: QUICK; SMART; SUPERBEE; etc...
 * OpenGL graphics; Animations.
 * Only cartesian rectangular coordinate system
